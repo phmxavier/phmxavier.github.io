@@ -1,2 +1,0 @@
-# phmxavier.github.io
- Curriculum
