@@ -1,5 +1,3 @@
-import React from 'react';
-
 function Experience(props: any) {
     return (
         <div className="card">

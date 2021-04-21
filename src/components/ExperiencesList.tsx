@@ -33,7 +33,7 @@ function ExperiencesList() {
         {
             periodo: "Agosto 2015 - Agosto 2017",
             empresa: "Upstairs App",
-            cargo: "Arquiteto de sistemas",
+            cargo: "Arquiteto de Sistemas",
             descricao: [
                 "Arquiteto responsável pelo desenho da solução usando microsserviços hospedados no Azure e aplicação\
                 móvel\
@@ -64,7 +64,6 @@ function ExperiencesList() {
                 })
             }
         </div>
-
     );
 }
 

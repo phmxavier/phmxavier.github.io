@@ -1,7 +1,3 @@
-
-
-import React from 'react';
-
 function Skill(props: any) {
     return (
         <div className="col-md-6">

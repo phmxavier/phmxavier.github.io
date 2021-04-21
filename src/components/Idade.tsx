@@ -1,6 +1,3 @@
-import React from 'react';
-
-// function Idade(props: { Nascimento: Date }) {
 function Idade(props: any) {
     return (
         <span>
