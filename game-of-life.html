@@ -28,7 +28,7 @@
     <div class="profile-page sidebar-collapse">
       <nav class="navbar navbar-expand-lg fixed-top bg-primary">
         <div class="container">
-          <div class="navbar-translate"><a class="navbar-brand" href="/" rel="tooltip">Pedro Xavier - CV</a>
+          <div class="navbar-translate"><a class="navbar-brand" href="/" rel="tooltip">Pedro Xavier - Jogo da Vida</a>
             <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
               aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-bar bar1"></span><span class="navbar-toggler-bar bar2"></span><span
@@ -55,8 +55,14 @@
     font-size: 14px;
     line-height: 1.33;
     border-radius: 35px;" class="btn btn-primary smooth-scroll">Info<br /><span class="fa fa-arrow-down"></span></a>
-    <div style="height: 720px;" id="gameOfLife">
-      <link href="https://pedroxavier.com/game-of-life-p5/" rel="import" />
+
+    <div style="height: 700px;" id="gameOfLife">
+      <iframe style="margin-top: 100px;
+                      width: 600px;
+                      height: 600px;
+                      position: absolute;
+                      left: 50%;
+                      transform: translate(-50%, 0%);" src="https://pedroxavier.com/game-of-life-p5/"></iframe>
     </div>
     <div class="section" id="about">
       <div class="container">
@@ -64,37 +70,32 @@
           <div class="row">
             <div class="col-md-12">
               <div class="card-body">
-                <div class="h4 mt-0 title">Informações básicas</div>
-                <h5 style="color: red;">Jogo em Fase de Desenvolvimento</h5>
-                <p>Desenvolver jogos para mim tem sido uma paixão há vários anos. Sempre brinquei, testei, estudei sobre
-                  o assunto, mas até agora não tinha completado um projeto.</p>
-                <p>Por ser um projeto "secundário" para mim, o desenvolvimento dos jogos é bem demorado e muitas vezes
-                  nem chego a concluí-lo. Com o Grid games o objetivo foi desenvolver um jogo simples o
-                  suficiente para que mesmo desenvolvendo apenas em alguns finais de semana, ele pudesse ser finalizado
-                  em pouco tempo.</p>
-                <p><b>Objetivo</b>: Lançar o jogo no Google Play Store</p>
-                <p><b>Linguagem</b>: C#</p>
-                <p><b>Softwares usados</b>: Unity, VSCode</p>
-                <div class="h4 mt-0 title">Sobre o jogo</div>
-                <p>O GridGames é um jogo que pretende reunir vários jogos populares que tem como principal
-                  caracteristica o GRID. Simples assim. Uma malha contendo linhas e colunas e que pode ser usada para
-                  uma infinidade de jogos.</p>
-                <p>Com uma estética que lembra os jogos que jogamos no papel mesmo, como o Jogo da Velha, o Grid Games é
-                  um jogo que pretende divertir o jogador casual.</p>
-                <p><b>Jogos presentes:</b></p>
-                <ul>
-                  <li><a href="https://en.wikipedia.org/wiki/Nonogram" target="_blank">Nonogram</a> <span
-                      class="text-muted">- Alfa</span></li>
-                  <li><a href="https://pt.wikipedia.org/wiki/Campo_minado" target="_blank">Campo Minado</a> <span
-                      class="text-muted">- Em Desenvolvimento</span></li>
-                  <li><a href="https://pt.wikipedia.org/wiki/Jogo_da_velha" target="_blank">Jogo da Velha</a> <span
-                      class="text-muted">- Alfa</span></li>
-                  <li><a href="https://pt.wikipedia.org/wiki/Tetris" target="_blank">Tetris</a> <span
-                      class="text-muted">- Backlog</span></li>
-                  <li><a href="https://pt.wikipedia.org/wiki/Batalha_naval_(jogo)" target="_blank">Batalha Naval</a>
-                    <span class="text-muted">- Backlog</span>
-                  </li>
-                </ul>
+                <div class="h4 mt-0 title">Jogo da Vida - Conway</div>
+                <a target="_blank"
+                  href="https://pt.wikipedia.org/wiki/Jogo_da_vida">https://pt.wikipedia.org/wiki/Jogo_da_vida</a>
+                <p>O jogo da vida (Game of Life) é um <a target="_blank"
+                    href="https://pt.wikipedia.org/wiki/Aut%C3%B3mato_celular">Autómato celular</a> desenvolvido pelo
+                  matemático <a target="_blank" href="https://en.wikipedia.org/wiki/John_Horton_Conway">John Horton
+                    Conway</a> em 1970.</p>
+                <p>Apesar de ter em seu nome a palavra jogo, o Jogo da Vida não tem nenhum jogador. A evolução dos
+                  estados são realizadas de forma automática tendo como base um estado inicial.</p>
+                <p>As regras a serem implementadas são simples e bem definidas:</p>
+                <ol>
+                  <li>Qualquer célula viva com menos de dois vizinhos vivos morre de solidão.</li>
+                  <li>Qualquer célula viva com mais de três vizinhos vivos morre de superpopulação.</li>
+                  <li>Qualquer célula morta com exatamente três vizinhos vivos se torna uma célula viva.</li>
+                  <li>Qualquer célula viva com dois ou três vizinhos vivos continua no mesmo estado para a próxima
+                    geração.</li>
+                </ol>
+                <p>Mas por quê desenvolver um jogo que não pode ser jogado? Qual o objetivo deste projeto? Resolvi implementar o Jogo da Vida para conhecer melhor o TypeScript 
+                  e seu ambiente de desenvolvimento. Devido às regras do jogo serem muito simples, tive que me preocupar com muito pouca coisa que não fosse o TypeScript e seu 
+                  ambiente (que eram o objetivo do projeto). Para implementar a interface gráfica, decidi utilizar a biblioteca <a target="_blank" href="https://p5js.org/">p5.js</a>
+                  pela sua enorme simplicidade e facilidade de configuração e publicação.
+                </p>
+                <p><b>Objetivo</b>: Aumentar a familiaridade com o TypeScript e seu ambiente de desenvolvimento.</p>
+                <p><b>Linguagem</b>: TypeScript</p>
+                <p><b>Softwares usados</b>: VSCode</p>
+                <p><b>Bibliotecas usadas</b>: <a target="_blank" href="https://p5js.org/">p5.js</a></p>
               </div>
             </div>
           </div>
@@ -132,23 +133,6 @@
         m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
     })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-    window.addEventListener('resize', resizeGame);
-    window.addEventListener('load', resizeGame);
-    function resizeGame(e) {
-      var w = document.documentElement.clientWidth;
-      var h = document.documentElement.clientHeight;
-      var elemento = document.getElementById("unityContainer");
-
-      if (w > 960) {
-        w = 960;
-      }
-      if (h > 600) {
-        h = 600;
-      }
-
-      elemento.style.width = w + "px";
-      elemento.style.height = h + "px";
-    }
     if (window.location.hostname != 'localhost') {
       ga('create', 'UA-175639746-1', 'auto');
       ga('send', 'pageview');
