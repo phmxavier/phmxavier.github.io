@@ -1,8 +1,8 @@
 function Idade(props: any) {
     return (
-        <span>
+        <div className="col-sm-8">
             {new Date(Date.now().valueOf() - props.Nascimento.valueOf()).getFullYear() - 1970}
-        </span>
+        </div>
     );
 }
 

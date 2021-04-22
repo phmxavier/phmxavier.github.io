@@ -12,7 +12,7 @@ function Experience(props: any) {
                     <div className="card-body">
                         <div className="h5">{props.experiencia.cargo}</div>
                         {props.experiencia.descricao.map((desc: any, i: any) => {
-                            return <p>{desc}</p>
+                            return <p key={i}>{desc}</p>
                         })}
                     </div>
                 </div>

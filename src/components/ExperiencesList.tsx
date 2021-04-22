@@ -56,13 +56,15 @@ function ExperiencesList() {
     ];
 
     return (
-        <div className="container cc-experience">
-            <div className="h4 text-center mb-4 title">Experiência de Trabalho</div>
-            {
-                experiencias.map((experiencia, i) => {
-                    return <Experience key={i} experiencia={experiencia} />;
-                })
-            }
+        <div id="experience" className="section">
+            <div className="container cc-experience">
+                <div className="h4 text-center mb-4 title">Experiência de Trabalho</div>
+                {
+                    experiencias.map((experiencia, i) => {
+                        return <Experience key={i} experiencia={experiencia} />;
+                    })
+                }
+            </div>
         </div>
     );
 }

@@ -25,105 +25,10 @@
 
 <body id="top">
   <noscript>You need to enable JavaScript to run this app.</noscript>
-  <header>
-    <div class="profile-page sidebar-collapse">
-      <nav class="navbar navbar-expand-lg fixed-top navbar-transparent bg-primary" color-on-scroll="400">
-        <div class="container">
-          <div class="navbar-translate"><a class="navbar-brand" href="#" rel="tooltip">Pedro Xavier - CV</a>
-            <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
-              aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation"><span
-                class="navbar-toggler-bar bar1"></span><span class="navbar-toggler-bar bar2"></span><span
-                class="navbar-toggler-bar bar3"></span></button>
-          </div>
-          <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <ul class="navbar-nav">
-              <li class="nav-item"><a class="nav-link smooth-scroll" href="#about">Sobre</a></li>
-              <li class="nav-item"><a class="nav-link smooth-scroll" href="#skill">Habilidades</a></li>
-              <li class="nav-item"><a class="nav-link smooth-scroll" href="#portfolio">Portfolio</a></li>
-              <li class="nav-item"><a class="nav-link smooth-scroll" href="#experience">Experiência</a></li>
-              <!-- <li class="nav-item"><a class="nav-link smooth-scroll" href="#contact">Contato</a></li> -->
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </header>
-  <div class="page-content">
-    <div>
-      <div class="profile-page">
-        <div class="wrapper">
-          <div class="page-header page-header-small" filter-color="green">
-            <div class="page-header-image" data-parallax="true" style="background-image: url('images/project-1.jpg');">
-            </div>
-            <div class="container">
-              <div class="content-center">
-                <div class="cc-profile-image"><a href="#"><img src="images/0.jpg" alt="Image" /></a></div>
-                <div class="h2 title">Pedro Xavier</div>
-                <p class="category text-white">Líder técnico, Analista/Desenvoledor</p>
-                <!-- <a class="btn btn-primary smooth-scroll mr-2" href="#contact" data-aos="zoom-in"
-                  data-aos-anchor="data-aos-anchor">Entre em Contato</a> -->
-                <a class="btn btn-primary" href="./files/Curriculo.pdf" download data-aos="zoom-in"
-                  data-aos-anchor="data-aos-anchor">Download CV</a>
-              </div>
-            </div>
-            <div class="section">
-              <div class="container">
-                <div class="button-container">
-                  <a class="btn btn-default btn-round btn-lg btn-icon" target="_blank"
-                    href="https://www.facebook.com/phmxavier" rel="tooltip" title="Facebook"><i
-                      class="fa fa-facebook"></i></a>
-                  <a class="btn btn-default btn-round btn-lg btn-icon" target="_blank"
-                    href="https://www.linkedin.com/in/phmxavier/" rel="tooltip" title="Linkedin"><i
-                      class="fa fa-linkedin"></i></a>
-                  <a class="btn btn-default btn-round btn-lg btn-icon" target="_blank"
-                    href="https://github.com/phmxavier" rel="tooltip" title="GitHub"><i class="fa fa-github"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="section" id="about">
-        <div class="container">
-          <div class="card" data-aos="fade-up" data-aos-offset="10">
-            <div class="row">
-              <!-- EM BREVE
-                <div class="col-lg-6 col-md-12">
-                <div class="card-body">
-                  <div class="h4 mt-0 title">About</div>
-                  <p>Hello! I am Anthony Barnett. Web Developer, Graphic Designer and Photographer.</p>
-                  <p>Creative CV is a HTML resume template for professionals. Built with Bootstrap 4, Now UI Kit and
-                    FontAwesome, this modern and responsive design template is perfect to showcase your portfolio,
-                    skills and experience. <a href="https://templateflip.com/templates/creative-cv/"
-                      target="_blank">Learn More</a></p>
-                </div>
-              </div> 
-            -->
-              <div class="col-lg-6 col-md-12">
-                <div class="card-body">
-                  <div class="h4 mt-0 title">Informações básicas</div>
-                  <div class="row">
-                    <div class="col-sm-4"><strong class="text-uppercase">Idade:</strong></div>
-                    <div class="col-sm-8" id="idade"></div>
-                  </div>
-                  <div class="row mt-3">
-                    <div class="col-sm-4"><strong class="text-uppercase">Email:</strong></div>
-                    <div class="col-sm-8">phmxavier@gmail.com</div>
-                  </div>
-                  <div class="row mt-3">
-                    <div class="col-sm-4"><strong class="text-uppercase">Idiomas:</strong></div>
-                    <div class="col-sm-8">Português, Inglês</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="section" id="skill"></div>
-      <div class="section" id="portfolio"></div>
-      <div class="section" id="experience"></div>
-      <!-- Em Breve
+  <div id="menu"></div>
+  <div id="content" class="page-content"></div>
+  <div id="footer"></div>
+  <!-- Em Breve
       <div class="section">
         <div class="container cc-education">
           <div class="h4 text-center mb-4 title">Education</div>
@@ -193,7 +98,7 @@
         </div>
       </div>
       -->
-      <!-- EM BREVE
+  <!-- EM BREVE
       <div class="section" id="reference">
         <div class="container cc-reference">
           <div class="h4 mb-4 text-center title">References</div>
@@ -259,7 +164,7 @@
         </div>
       </div>
       -->
-      <!-- Contato???
+  <!-- Contato???
       <div class="section" id="contact">
         <div class="cc-contact-information" style="background-image: url('images/staticmap.png');">
           <div class="container">
@@ -335,23 +240,6 @@
         </div>
       </div>
       -->
-    </div>
-  </div>
-  <footer class="footer">
-    <div class="container text-center">
-      <a class="cc-facebook btn btn-link" target="_blank" href="https://www.facebook.com/phmxavier"><i
-          class="fa fa-facebook fa-2x " aria-hidden="true"></i></a>
-      <a class="cc-twitter btn btn-link " target="_blank" href="https://www.linkedin.com/in/phmxavier"><i
-          class="fa fa-linkedin fa-2x " aria-hidden="true"></i></a>
-      <a class="cc-twitter btn btn-link " target="_blank" href="https://github.com/phmxavier"><i
-          class="fa fa-github fa-2x " aria-hidden="true"></i></a>
-    </div>
-    <div class="h4 title text-center">Pedro Xavier</div>
-    <div class="text-center text-muted">
-      <p>&copy; Creative CV. All rights reserved.<br>Design - <a class="credit" href="https://templateflip.com"
-          target="_blank">TemplateFlip</a></p>
-    </div>
-  </footer>
   <script src="js/core/jquery.3.2.1.min.js"></script>
   <script src="js/core/popper.min.js"></script>
   <script src="js/core/bootstrap.min.js"></script>
