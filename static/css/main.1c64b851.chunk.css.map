@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/components/Profile.css"],"names":[],"mappings":"AAAA,mBACI,0DACJ","file":"main.1c64b851.chunk.css","sourcesContent":[".page-header-image{\r\n    background-image: url('../images/project-1.jpg');\r\n}"]}
