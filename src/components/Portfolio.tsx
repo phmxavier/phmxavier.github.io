@@ -36,7 +36,7 @@ function Portfolio() {
                   Description="Projeto para aumentar a prática com o TypeScript. Primeira experiência com a biblioteca
                               p5.js."
                   Thumb="images/gameoflife_thumb.jpg"
-                  Href="/game-of-life.html" />
+                  Href="/game-of-life" />
               </div>
             </div>
           </div>

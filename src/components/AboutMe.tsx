@@ -1,8 +1,9 @@
 import Idade from "./Idade";
+import './AboutMe.css';
 
 function AboutMe() {
     return (
-        <div id="about" className="section">
+        <div id="about" className="section white-background">
             <div className="section">
                 <div className="container">
                     <div className="card" data-aos="fade-up" data-aos-offset="10">
