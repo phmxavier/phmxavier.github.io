@@ -10,7 +10,7 @@ function Profile() {
                             <div className="cc-profile-image"><a href="#"><img src="images/0.jpg" alt="ProfileImage" /></a></div>
                             <div className="h2 title">Pedro Xavier</div>
                             <p className="category text-white">Líder técnico, Analista/Desenvoledor</p>
-                            <a className="btn btn-primary" href="./files/Curriculo.pdf" download data-aos="zoom-in"
+                            <a className="btn btn-primary" href="./files/Pedro_Xavier_Curriculo.pdf" download data-aos="zoom-in"
                                 data-aos-anchor="data-aos-anchor">Download CV</a>
                         </div>
                     </div>
