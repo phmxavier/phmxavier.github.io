@@ -4,7 +4,15 @@ function ExperiencesList() {
 
     let experiencias = [
         {
-            periodo: "Agosto 2019 - Atualmente",
+            periodo: "Julho 2021 - Atualmente",
+            empresa: "Banco BMG",
+            cargo: "Coordenador",
+            descricao: [
+                "Coordenador da equipe responsável por cuidar dos sistemas de investimento do BMG Digital."
+            ]
+        },
+        {
+            periodo: "Agosto 2019 - Julho 2021",
             empresa: "Banco BMG",
             cargo: "Líder Técnico",
             descricao: [
