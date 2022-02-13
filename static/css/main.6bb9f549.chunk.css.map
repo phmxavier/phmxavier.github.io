@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/components/AboutMe.css","webpack://src/components/Profile.css"],"names":[],"mappings":"AAAA,kBACE,eACF,CCFA,mBACI,0DACJ","file":"main.6bb9f549.chunk.css","sourcesContent":[".white-background{\r\n  background: #FFFFFF;\r\n}",".page-header-image{\r\n    background-image: url('../images/project-1.jpg');\r\n}"]}
