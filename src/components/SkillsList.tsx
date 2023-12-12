@@ -8,19 +8,16 @@ function SkillsList() {
                 <div className="card" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
                     <div className="card-body">
                         <div className="row">
-                            <Skill Nome="C#" Valor="90" />
-                            <Skill Nome=".NET / .NET Core" Valor="85" />
+                            <Skill Nome="C#" Valor="95" />
+                            <Skill Nome=".NET / .NET Core" Valor="90" />
                         </div>
                         <div className="row">
-                            <Skill Nome="Angular 2+" Valor="65" />
-                            <Skill Nome="APIs Restfull" Valor="75" />
+                            <Skill Nome="Liderança" Valor="85" />
+                            <Skill Nome="Mobile (Flutter)" Valor="70" />
                         </div>
                         <div className="row">
-                            <Skill Nome="Mobile (Flutter, Cordova)" Valor="45" />
                             <Skill Nome="Arquitetura de Sistemas" Valor="70" />
-                        </div>
-                        <div className="row">
-                            <Skill Nome="Desenvolvimento de Jogos (UNITY)" Valor="30" />
+                            <Skill Nome="Desenvolvimento de Jogos (UNITY)" Valor="40" />
                         </div>
                     </div>
                 </div>
