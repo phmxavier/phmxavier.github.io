@@ -5,7 +5,7 @@ function ExperiencesList() {
     let experiencias = [
         {
             periodo: "Agosto 2023 - Atualmente",
-            empresa: "Banco BMG",
+            empresa: "Neon",
             cargo: "Staff Engineer",
             descricao: [
                 "Atuação propondo melhorias tecnológicas, ferramentas e práticas para resolver e garantir a segurança e qualidade. Orientando as direções técnicas da arquitetura e do planejamento das equipes criando cadência de entregas com foco no curto-médio prazo e mapeando riscos e trade-offs."
