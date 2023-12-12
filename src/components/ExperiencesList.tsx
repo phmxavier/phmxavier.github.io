@@ -4,7 +4,23 @@ function ExperiencesList() {
 
     let experiencias = [
         {
-            periodo: "Julho 2021 - Atualmente",
+            periodo: "Agosto 2023 - Atualmente",
+            empresa: "Banco BMG",
+            cargo: "Staff Engineer",
+            descricao: [
+                "Atuação propondo melhorias tecnológicas, ferramentas e práticas para resolver e garantir a segurança e qualidade. Orientando as direções técnicas da arquitetura e do planejamento das equipes criando cadência de entregas com foco no curto-médio prazo e mapeando riscos e trade-offs."
+            ]
+        },
+        {
+            periodo: "Setembro 2022 - Agosto 2023",
+            empresa: "BMG Money",
+            cargo: "Líder de Equipe",
+            descricao: [
+                "Responsável por liderar as equipes de Engenharia Interna e Reconciliação. Ajudando a equipe na priorização e desenho das soluções."
+            ]
+        },
+        {
+            periodo: "Julho 2021 - Setembro 2022",
             empresa: "Banco BMG",
             cargo: "Coordenador",
             descricao: [
