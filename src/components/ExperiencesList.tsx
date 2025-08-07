@@ -4,11 +4,21 @@ function ExperiencesList() {
 
     let experiencias = [
         {
-            periodo: "Agosto 2023 - Atualmente",
+            periodo: "Outubro 2024 - Agosto 2025",
+            empresa: "Neon",
+            cargo: "Tech Manager",
+            descricao: [
+                "Como Tech Manager, liderei as equipes responsáveis pelas frentes de investimentos e seguros, atuando como ponte entre times de engenharia, parceiros e fornecedores, com foco na entrega de novos produtos estratégicos. Realizei negociação e acompanhamento de fornecedores-chave, assegurando qualidade, inovação e aderência a prazos.",
+                "Um dos destaques desse período foi a criação do seguro de vida da Neon, do conceito à implementação, coordenando o desenvolvimento do produto e alinhando todos os envolvidos — desde design e tecnologia até stakeholders de seguros e compliance."
+            ]
+        },
+        {
+            periodo: "Agosto 2023 - Outubro 2024",
             empresa: "Neon",
             cargo: "Staff Engineer",
             descricao: [
-                "Atuação propondo melhorias tecnológicas, ferramentas e práticas para resolver e garantir a segurança e qualidade. Orientando as direções técnicas da arquitetura e do planejamento das equipes criando cadência de entregas com foco no curto-médio prazo e mapeando riscos e trade-offs."
+                "Atuando na equipe de Cadastro e Compliance, tive papel-chave no projeto de desidratação da base legada de cadastro, conduzindo o refactoring da estrutura de dados para melhorar performance, manutenção e qualidade. Também iniciei o desenho do sistema de prevenção à lavagem de dinheiro (PLD), traduzindo requisitos regulatórios em arquitetura técnica robusta e escalável.",                
+                "Nesse papel, garanti entregas técnicas de ponta a ponta — desde o levantamento de requisitos até deploy e observabilidade — e atuei como mentor técnico, disseminando boas práticas e apoiando a decisão de trade‑offs com clareza e colaboração."
             ]
         },
         {
@@ -16,7 +26,10 @@ function ExperiencesList() {
             empresa: "BMG Money",
             cargo: "Líder de Equipe",
             descricao: [
-                "Responsável por liderar as equipes de Engenharia Interna e Reconciliação. Ajudando a equipe na priorização e desenho das soluções."
+                "Como Tech Leader na BMG Money, liderei tecnicamente as frentes de Collections e DevExperience, garantindo entregas alinhadas às metas estratégicas da empresa e promovendo uma cultura de excelência técnica.",
+                "Atuei como ponte entre a equipe de negócios em Miami e a equipe de tecnologia no Brasil, facilitando a comunicação e o alinhamento entre as necessidades de negócios e as soluções técnicas.",
+                "Fiz a gestão direta de pessoas, com foco no acompanhamento técnico das entregas e no desenvolvimento profissional dos integrantes das equipes. Estruturei planos de crescimento individual, promovi feedbacks contínuos e incentivei a evolução de competências técnicas.",
+                "Na frente de Collections, trabalhei para melhorar os sistemas de recuperação de crédito, garantindo eficiência e confiabilidade. Já na área de Developer Experience, impulsionei a adoção de boas práticas de engenharia, padronização de processos e melhorias nas ferramentas internas, elevando a produtividade e satisfação do time de desenvolvimento."
             ]
         },
         {
@@ -52,29 +65,6 @@ function ExperiencesList() {
                 desenvolvimento.\
                 Tive grande participação nas decisões arquiteturais do sistema e construção de toda a parte de\
                 Onboarding do cliente."
-            ]
-        },
-        {
-            periodo: "Agosto 2015 - Agosto 2017",
-            empresa: "Upstairs App",
-            cargo: "Arquiteto de Sistemas",
-            descricao: [
-                "Arquiteto responsável pelo desenho da solução usando microsserviços hospedados no Azure e aplicação\
-                móvel\
-                desenvolvida utilizando Cordova.",
-                "A publicação dos serviços e da aplicação era realizada utilizando CI/CD TFS Online flow."
-            ]
-        },
-        {
-            periodo: "Julho 2010 - Janeiro 2018",
-            empresa: "STOR Global",
-            cargo: "Analista/Desenvolvedor",
-            descricao: [
-                "Analista responsável por grande parte do projeto de modernização do principal sistema da empresa, o\
-                Stor.",
-                "Participando ativamente no processo de levantamento e especificação das alterações evolutivas do\
-                sistema.\
-                Desenvolvimento das atividades de Dev-Ops."
             ]
         },
     ];
