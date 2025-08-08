@@ -9,7 +9,7 @@ function Menu() {
         <header>
             <div className="profile-page sidebar-collapse">
                 <nav className={`navbar navbar-expand-lg fixed-top ${isHomePage ? 'navbar-transparent' : ''} bg-primary`}
-                    {...(isHomePage ? {'color-on-scroll': '400'} : {})}>
+                    {...(isHomePage ? {'color-on-scroll': '400'} : {'color-on-scroll': '-1'})}>
                     <div className="container">
                         <div className="navbar-translate"><a className="navbar-brand" href="/" rel="tooltip">Pedro Xavier - CV</a>
                             <button className="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"

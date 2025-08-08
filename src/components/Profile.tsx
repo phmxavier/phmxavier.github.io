@@ -18,10 +18,6 @@ function Profile() {
                         <div className="container">
                             <div className="button-container">
                                 <a className="btn btn-default btn-round btn-lg btn-icon" target="_blank"
-                                    href="https://www.facebook.com/phmxavier" rel="tooltip noreferrer" title="Facebook">
-                                    <i className="fa fa-facebook"></i>
-                                </a>
-                                <a className="btn btn-default btn-round btn-lg btn-icon" target="_blank"
                                     href="https://www.linkedin.com/in/phmxavier/" rel="tooltip noreferrer" title="Linkedin">
                                     <i className="fa fa-linkedin"></i>
                                 </a>

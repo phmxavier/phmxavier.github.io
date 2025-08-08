@@ -7276,3 +7276,23 @@ a.credit {
 #unityContainer canvas{
   margin-top:5px;
 }
+.navbar {
+  background-color: #378C3F;
+}
+
+.navbar.navbar-transparent {
+  background-color: transparent !important;
+}
+
+.navbar:not(.navbar-transparent) {
+  background-color: #378C3F !important;
+  transition: background-color 0.3s;
+}
+
+@media not all and (min-resolution:.001dpcm) {
+  @supports (-webkit-appearance:none) {
+    .navbar:not(.navbar-transparent) {
+      background-color: #378C3F !important;
+    }
+  }
+}
