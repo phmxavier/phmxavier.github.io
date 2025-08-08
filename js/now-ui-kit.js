@@ -143,11 +143,29 @@ nowuiKit = {
             if (transparent) {
                 transparent = false;
                 $('.navbar[color-on-scroll]').removeClass('navbar-transparent');
+                // Safari repaint workaround
+                if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+                    var navbar = document.querySelector('.navbar[color-on-scroll]');
+                    if (navbar) {
+                        navbar.style.display = 'none';
+                        navbar.offsetHeight; // force reflow
+                        navbar.style.display = '';
+                    }
+                }
             }
         } else {
             if (!transparent) {
                 transparent = true;
                 $('.navbar[color-on-scroll]').addClass('navbar-transparent');
+                // Safari repaint workaround
+                if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+                    var navbar = document.querySelector('.navbar[color-on-scroll]');
+                    if (navbar) {
+                        navbar.style.display = 'none';
+                        navbar.offsetHeight; // force reflow
+                        navbar.style.display = '';
+                    }
+                }
             }
         }
     }, 17),
