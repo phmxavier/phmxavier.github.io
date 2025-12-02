@@ -64,10 +64,18 @@ const UnityWebGLPlayer = ({ buildFolder, title }: UnityWebGLPlayerProps) => {
   const [status, setStatus] = useState<UnityStatus>("idle");
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const instanceRef = useRef<UnityInstance | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
+    const detectMobile = () => {
+      if (typeof window === "undefined" || typeof navigator === "undefined") return false;
+      const ua = navigator.userAgent || navigator.vendor || (window as unknown as { opera?: string }).opera || "";
+      const coarsePointer = typeof window.matchMedia === "function" && window.matchMedia("(pointer: coarse)").matches;
+      return /android|ipad|iphone|ipod|iemobile|mobile|opera mini/i.test(ua) || coarsePointer;
+    };
+
     let cancelled = false;
     let createdInstance: UnityInstance | null = null;
     const basePath = getBasePath(buildFolder);
@@ -76,6 +84,14 @@ const UnityWebGLPlayer = ({ buildFolder, title }: UnityWebGLPlayerProps) => {
 
     const boot = async () => {
       try {
+        const mobile = detectMobile();
+        setIsMobile(mobile);
+        if (mobile) {
+          setStatus("error");
+          setError("Este jogo está disponível apenas em navegadores desktop. Abra no computador para jogar.");
+          return;
+        }
+
         setStatus("loading");
         setProgress(5);
         await loadScriptOnce(loaderUrl);
@@ -92,9 +108,10 @@ const UnityWebGLPlayer = ({ buildFolder, title }: UnityWebGLPlayerProps) => {
         }
 
         const config: UnityConfig = {
-          dataUrl: `${buildPath}/build.data.gz`,
-          frameworkUrl: `${buildPath}/build.framework.js.gz`,
-          codeUrl: `${buildPath}/build.wasm.gz`,
+          // Usamos arquivos descomprimidos porque o GitHub Pages não envia headers de Content-Encoding.
+          dataUrl: `${buildPath}/build.data`,
+          frameworkUrl: `${buildPath}/build.framework.js`,
+          codeUrl: `${buildPath}/build.wasm`,
           streamingAssetsUrl: `${basePath}/StreamingAssets`,
           companyName: "DefaultCompany",
           productName: title,
@@ -172,9 +189,23 @@ const UnityWebGLPlayer = ({ buildFolder, title }: UnityWebGLPlayerProps) => {
         )}
 
         {status === "error" && (
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-red-950/80 px-4 text-center">
-            <p className="text-sm font-semibold text-red-200">Não foi possível iniciar o jogo.</p>
-            <p className="text-xs text-red-100/80">{error}</p>
+          <div
+            className={`absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 px-4 text-center ${
+              isMobile ? "bg-amber-950/80" : "bg-red-950/80"
+            }`}
+          >
+            <p
+              className={`text-sm font-semibold ${
+                isMobile ? "text-amber-100" : "text-red-200"
+              }`}
+            >
+              {isMobile ? "Disponível apenas em navegadores desktop." : "Não foi possível iniciar o jogo."}
+            </p>
+            <p
+              className={`text-xs ${isMobile ? "text-amber-100/80" : "text-red-100/80"}`}
+            >
+              {error}
+            </p>
           </div>
         )}
 
