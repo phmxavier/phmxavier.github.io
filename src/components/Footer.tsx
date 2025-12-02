@@ -1,19 +1,27 @@
-function Footer() {
-    return (
-        <footer className="footer">
-            <div className="container text-center">
-                <a className="cc-twitter btn btn-link " target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/phmxavier">
-                    <i className="fa fa-linkedin fa-2x" aria-hidden="true"></i>
-                </a>
-                <a className="cc-twitter btn btn-link " target="_blank" rel="noreferrer" href="https://github.com/phmxavier">
-                    <i className="fa fa-github fa-2x" aria-hidden="true"></i>
-                </a>
-            </div>
-            <div className="h4 title text-center">Pedro Xavier</div>
-            <div className="text-center text-muted">
-                <p>Design - <a className="credit" href="https://templateflip.com" target="_blank" rel="noreferrer">TemplateFlip</a></p>
-            </div>
-        </footer>
-    );
-}
+import { socialLinks } from "../data/socialLinks";
+
+const Footer = () => {
+  return (
+    <footer className="border-t border-slate-800 bg-surface-2">
+      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+        <p className="text-sm text-slate-400">© {new Date().getFullYear()} phmxavier.com</p>
+        <div className="flex flex-wrap items-center gap-4 text-sm text-slate-200">
+          {socialLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2 transition hover:text-white"
+            >
+              <link.icon className="h-5 w-5" />
+              <span>{link.name}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </footer>
+  );
+};
+
 export default Footer;
