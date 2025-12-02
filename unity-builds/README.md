@@ -11,3 +11,5 @@ Exemplo:
 - No array `games`, defina `webBuildUrl: localWebBuild("neon-runner")`.
 
 Assim o botão **Jogar online** abrirá o build que viaja junto com o build desta aplicação.
+
+> GitHub Pages não envia o header `Content-Encoding`, então não use arquivos `.gz` ou `.br` no deploy final. Exporte do Unity com compressão desativada ou descompacte os arquivos (`build.data.gz`, `build.framework.js.gz`, `build.wasm.gz`) para usar as versões sem extensão.
