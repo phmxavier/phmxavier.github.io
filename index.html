@@ -7,6 +7,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script>
+      const redirect = sessionStorage.getItem("redirect");
+      if (redirect) {
+        sessionStorage.removeItem("redirect");
+        const redirectUrl = new URL(redirect);
+        const targetPath = `${redirectUrl.pathname}${redirectUrl.search}${redirectUrl.hash}`;
+        const currentPath = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+        if (currentPath !== targetPath) {
+          window.history.replaceState(null, "", targetPath);
+        }
+      }
+    </script>
     <script type="module" crossorigin src="/assets/index-1e4ZHmCU.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-Dd0qDO0Z.css">
   </head>
