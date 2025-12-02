@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/main.72741ddd.css","mappings":"AAAA,kBACE,eACF,CCFA,mBACI,sEACJ","sources":["components/AboutMe.css","components/Profile.css"],"sourcesContent":[".white-background{\n  background: #FFFFFF;\n}",".page-header-image{\n    background-image: url('../images/project-1.jpg');\n}"],"names":[],"sourceRoot":""}
