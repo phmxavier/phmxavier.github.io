@@ -2,12 +2,11 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0; url=/" />
     <title>Redirecionando...</title>
     <script>
-      const redirect = `${window.location.origin}${window.location.pathname}${window.location.search}${window.location.hash}`;
-      sessionStorage.setItem("redirect", redirect);
-      window.location.replace("/");
+      const redirectPath = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+      const target = `/?redirect=${encodeURIComponent(redirectPath)}`;
+      window.location.replace(target);
     </script>
   </head>
   <body>
