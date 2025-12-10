@@ -13,7 +13,7 @@ const Header = () => {
           <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-accent to-accent-2 flex items-center justify-center font-bold text-lg">
             PX
           </div>
-          <div>
+          <div className="hidden sm:block">
             <p className="text-sm text-slate-300">Portfólio & Currículo</p>
             <p className="font-semibold text-white">Pedro Xavier</p>
           </div>

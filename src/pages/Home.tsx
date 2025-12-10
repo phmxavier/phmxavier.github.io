@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import ExperienceCard from "../components/ExperienceCard";
 import { experiences } from "../data/experiences";
 import { socialLinks } from "../data/socialLinks";
+import { HashnodePosts } from "../components/HashnodePosts";
 
 const HomePage = () => {
   const latestExperiences = experiences.slice(0, 2);
@@ -88,6 +89,8 @@ const HomePage = () => {
           ))}
         </div>
       </section>
+
+      <HashnodePosts limit={2} />
 
     </div>
   );
