@@ -21,6 +21,17 @@ export const localWebBuild = (folderName: string) => `${UNITY_BUILDS_BASE_PATH}/
 export const games: Game[] = [
 
   {
+    id: "wooly-way",
+    title: "Wooly Way",
+    shortDescription: "Ajude o cão pastor para conduzir as ovelhas até a cerca.",
+    longDescription:
+      "Wooly Way é um minigame onde você controla um cão pastor determinado a organizar o rebanho. O objetivo é simples e caótico: mover-se pelo campo, prever o comportamento das ovelhas e empurrá-las para dentro da cerca antes que fujam por aí.",
+    techs: ["Unity", "C#", "WebGL"],
+    thumbnailUrl: "/images/wooly-way-cover.png",
+    thumbnailFit: "cover",
+    unityBuildFolder: "wooly-way"
+  },
+  {
     id: "grid-games",
     title: "Grid Games",
     shortDescription: "Coleção de minigames em grade.",
