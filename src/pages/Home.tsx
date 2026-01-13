@@ -47,7 +47,7 @@ const HomePage = () => {
           </div>
           <div className="relative mx-auto h-44 w-44 overflow-hidden rounded-2xl border border-accent/40 bg-slate-900/60 shadow-xl shadow-accent/30">
             <img
-              src="https://media.licdn.com/dms/image/v2/D4D03AQEaZ6cfa0Gcbw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1675086488560?e=1766016000&v=beta&t=LIlIGitWiArRZFAJ57Fd_HITGS6h7hmIEd5iZZmkssU"
+              src="/images/perfil.jpeg"
               alt="Foto de perfil de Pedro Xavier"
               className="h-full w-full object-cover"
               loading="lazy"

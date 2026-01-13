@@ -61,6 +61,7 @@ export const HashnodePosts = ({ publicationHost = "blog.pedroxavier.com", limit 
   useEffect(() => {
     const controller = new AbortController();
     const resolvedLimit = normalizeLimit(limit);
+    const fetchLimit = Math.max(resolvedLimit, 10);
 
     const fetchPosts = async () => {
       setLoading(true);
@@ -93,7 +94,7 @@ export const HashnodePosts = ({ publicationHost = "blog.pedroxavier.com", limit 
             `,
             variables: {
               host: publicationHost,
-              first: resolvedLimit
+              first: fetchLimit
             }
           }),
           signal: controller.signal
@@ -104,7 +105,6 @@ export const HashnodePosts = ({ publicationHost = "blog.pedroxavier.com", limit 
         }
 
         const json: HashnodeResponse = await response.json();
-
         if (json.errors?.length) {
           throw new Error(json.errors[0]?.message ?? "Erro ao carregar posts");
         }
@@ -114,7 +114,12 @@ export const HashnodePosts = ({ publicationHost = "blog.pedroxavier.com", limit 
           .map((edge) => edge?.node)
           .filter((node): node is HashnodePost => Boolean(node));
 
-        setPosts(parsedPosts);
+        const sortedPosts = parsedPosts
+          .slice()
+          .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+          .slice(0, resolvedLimit);
+
+        setPosts(sortedPosts);
       } catch (err) {
         if (!controller.signal.aborted) {
           setError(err instanceof Error ? err.message : "Erro inesperado ao carregar posts");
