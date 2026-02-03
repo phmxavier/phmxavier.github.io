@@ -53,6 +53,16 @@ const formatDate = (value: string) => {
   return new Intl.DateTimeFormat("pt-BR", { dateStyle: "medium" }).format(date);
 };
 
+const getPublishedTime = (value: string) => {
+  const time = Date.parse(value);
+
+  if (Number.isNaN(time)) {
+    return 0;
+  }
+
+  return time;
+};
+
 export const HashnodePosts = ({ publicationHost = "blog.pedroxavier.com", limit = 5 }: HashnodePostsProps) => {
   const [posts, setPosts] = useState<HashnodePost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -111,13 +121,20 @@ export const HashnodePosts = ({ publicationHost = "blog.pedroxavier.com", limit 
 
         const edges = json.data?.publication?.posts?.edges ?? [];
         const parsedPosts = edges
-          .map((edge) => edge?.node)
-          .filter((node): node is HashnodePost => Boolean(node));
+          .map((edge, index) => ({ post: edge?.node, index }))
+          .filter((item): item is { post: HashnodePost; index: number } => Boolean(item.post));
 
         const sortedPosts = parsedPosts
           .slice()
-          .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
-          .slice(0, resolvedLimit);
+          .sort((a, b) => {
+            const diff = getPublishedTime(b.post.publishedAt) - getPublishedTime(a.post.publishedAt);
+            if (diff !== 0) {
+              return diff;
+            }
+            return a.index - b.index;
+          })
+          .slice(0, resolvedLimit)
+          .map((item) => item.post);
 
         setPosts(sortedPosts);
       } catch (err) {
