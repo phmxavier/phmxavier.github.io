@@ -13,8 +13,12 @@ export const experiences: Experience[] = [
     role: "Especialista Master",
     company: "Inter",
     period: "Ago 2025 - Atual",
-    description:
-      "Especialista em engenharia e arquitetura, contribuindo em projetos estratégicos e liderando iniciativas técnicas em produtos de adquirência (InterPag).",
+    description: 
+    `Atuo como Especialista Master liderando iniciativas estratégicas de engenharia em fintech, com foco em produtos financeiros de alto impacto, especialmente na modernização da frente de adquirência.
+
+Trabalho na interseção entre engenharia, produto e negócio, direcionando decisões arquiteturais de forma estratégica para gerar impacto real na empresa e na experiência do cliente.
+
+Lidero projetos complexos de ponta a ponta, com foco em escalabilidade, qualidade e eficiência, além de contribuir na evolução da cultura de engenharia e desenvolvimento dos times.`,
     techs: ["Arquitetura", "Engenharia", "Fintech", "Tech Strategy", "Mentoria"]
   },
   {

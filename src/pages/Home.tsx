@@ -42,6 +42,12 @@ const HomePage = () => {
                 >
                   Ver perfil no LinkedIn
                 </a>
+                <a
+                  href="/resume.html"
+                  className="rounded-xl border border-slate-600 px-5 py-3 text-sm font-semibold text-slate-100 transition hover:border-accent hover:text-accent"
+                >
+                  Ver versão textual
+                </a>
               </div>
             </div>
           </div>

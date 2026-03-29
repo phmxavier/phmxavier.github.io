@@ -37,6 +37,12 @@ const Header = () => {
           >
             Portfólio de Jogos
           </NavLink>
+          <a
+            href="/resume.html"
+            className={`${navBase} ${navInactive}`}
+          >
+            Versão texto
+          </a>
         </nav>
       </div>
     </header>
