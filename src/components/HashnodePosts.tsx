@@ -42,6 +42,14 @@ const formatDate = (value: string) => {
   return new Intl.DateTimeFormat("pt-BR", { dateStyle: "medium" }).format(date);
 };
 
+const isValidDateString = (value: string) => {
+  if (!value.trim()) {
+    return false;
+  }
+
+  return !Number.isNaN(new Date(value).getTime());
+};
+
 const decodeHtml = (value: string) => {
   if (typeof window === "undefined") {
     return value;
@@ -75,6 +83,16 @@ const getSlugFromUrl = (value: string) => {
   }
 };
 
+const getPostKey = (value: string) => {
+  const normalized = value.trim();
+
+  if (!normalized) {
+    return "";
+  }
+
+  return getSlugFromUrl(normalized);
+};
+
 const normalizePost = (post: ParsedFeedPost, baseUrl: string): HashnodePost => {
   const url = toAbsoluteUrl(post.url, baseUrl);
 
@@ -102,7 +120,13 @@ const parsePostsFromHtml = (html: string, baseUrl: string) => {
       const titleLink = article.querySelector<HTMLAnchorElement>("h2 a");
       const description = article.querySelector<HTMLParagraphElement>(".post-card-description");
       const image = article.querySelector<HTMLImageElement>("img.post-card-cover");
-      const dateText = article.querySelector(".post-card-meta span")?.textContent?.trim() ?? "";
+      const publishedTime =
+        article.querySelector<HTMLTimeElement>("time[datetime]")?.dateTime?.trim() ??
+        article.querySelector<HTMLElement>("[datetime]")?.getAttribute("datetime")?.trim() ??
+        article.querySelector<HTMLElement>("[data-published-at]")?.getAttribute("data-published-at")?.trim() ??
+        article.querySelector(".post-card-meta time")?.textContent?.trim() ??
+        article.querySelector(".post-card-meta span")?.textContent?.trim() ??
+        "";
 
       if (!titleLink?.textContent?.trim() || !titleLink.getAttribute("href")) {
         return null;
@@ -113,7 +137,7 @@ const parsePostsFromHtml = (html: string, baseUrl: string) => {
           title: titleLink.textContent,
           brief: description?.textContent ?? "",
           url: titleLink.getAttribute("href") ?? "",
-          publishedAt: dateText,
+          publishedAt: publishedTime,
           coverImageUrl: image?.getAttribute("src") ?? undefined
         },
         baseUrl
@@ -151,7 +175,43 @@ const parsePostsFromRss = (xml: string, baseUrl: string) => {
     .filter((post): post is HashnodePost => Boolean(post));
 };
 
+const mergePosts = (postsFromHtml: HashnodePost[], postsFromRss: HashnodePost[]) => {
+  const rssByKey = new Map<string, HashnodePost>();
+
+  postsFromRss.forEach((post) => {
+    const key = getPostKey(post.url) || getPostKey(post.slug);
+    if (key) {
+      rssByKey.set(key, post);
+    }
+  });
+
+  const mergedPosts = postsFromHtml.map((htmlPost) => {
+    const key = getPostKey(htmlPost.url) || getPostKey(htmlPost.slug);
+    const rssPost = key ? rssByKey.get(key) : undefined;
+
+    if (!rssPost) {
+      return htmlPost;
+    }
+
+    return {
+      ...rssPost,
+      ...htmlPost,
+      publishedAt: isValidDateString(htmlPost.publishedAt) ? htmlPost.publishedAt : rssPost.publishedAt,
+      brief: htmlPost.brief || rssPost.brief,
+      coverImage: htmlPost.coverImage?.url ? htmlPost.coverImage : rssPost.coverImage
+    };
+  });
+
+  if (mergedPosts.length > 0) {
+    return mergedPosts;
+  }
+
+  return postsFromRss;
+};
+
 const fetchBlogPosts = async (baseUrl: string, signal: AbortSignal) => {
+  let postsFromHtml: HashnodePost[] = [];
+
   try {
     const homepageResponse = await fetch(baseUrl, { signal });
 
@@ -160,11 +220,7 @@ const fetchBlogPosts = async (baseUrl: string, signal: AbortSignal) => {
     }
 
     const homepageHtml = await homepageResponse.text();
-    const postsFromHtml = parsePostsFromHtml(homepageHtml, baseUrl);
-
-    if (postsFromHtml.length > 0) {
-      return postsFromHtml;
-    }
+    postsFromHtml = parsePostsFromHtml(homepageHtml, baseUrl);
   } catch (error) {
     if (signal.aborted) {
       throw error;
@@ -178,7 +234,9 @@ const fetchBlogPosts = async (baseUrl: string, signal: AbortSignal) => {
   }
 
   const rssXml = await rssResponse.text();
-  return parsePostsFromRss(rssXml, baseUrl);
+  const postsFromRss = parsePostsFromRss(rssXml, baseUrl);
+
+  return mergePosts(postsFromHtml, postsFromRss);
 };
 
 export const HashnodePosts = ({ publicationHost = "blog.pedroxavier.com", limit = 5 }: HashnodePostsProps) => {
