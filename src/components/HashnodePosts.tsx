@@ -11,29 +11,18 @@ type HashnodePost = {
   } | null;
 };
 
-type HashnodePostEdge = {
-  node: HashnodePost | null;
-};
-
-type HashnodeResponse = {
-  data?: {
-    publication?: {
-      posts?: {
-        edges: HashnodePostEdge[];
-      } | null;
-    } | null;
-  };
-  errors?: {
-    message?: string;
-  }[];
-};
-
 type HashnodePostsProps = {
   publicationHost?: string;
   limit?: number;
 };
 
-const HASHNODE_ENDPOINT = "https://gql.hashnode.com/";
+type ParsedFeedPost = {
+  title: string;
+  brief: string;
+  url: string;
+  publishedAt: string;
+  coverImageUrl?: string;
+};
 
 const normalizeLimit = (value?: number) => {
   if (typeof value === "number" && Number.isFinite(value) && value > 0) {
@@ -53,14 +42,143 @@ const formatDate = (value: string) => {
   return new Intl.DateTimeFormat("pt-BR", { dateStyle: "medium" }).format(date);
 };
 
-const getPublishedTime = (value: string) => {
-  const time = Date.parse(value);
-
-  if (Number.isNaN(time)) {
-    return 0;
+const decodeHtml = (value: string) => {
+  if (typeof window === "undefined") {
+    return value;
   }
 
-  return time;
+  const textarea = document.createElement("textarea");
+  textarea.innerHTML = value;
+  return textarea.value;
+};
+
+const toAbsoluteUrl = (value: string | null | undefined, baseUrl: string) => {
+  if (!value) {
+    return "";
+  }
+
+  try {
+    return new URL(value, baseUrl).toString();
+  } catch {
+    return value;
+  }
+};
+
+const getSlugFromUrl = (value: string) => {
+  try {
+    const url = new URL(value);
+    const segments = url.pathname.split("/").filter(Boolean);
+
+    return segments.at(-1) ?? value;
+  } catch {
+    return value;
+  }
+};
+
+const normalizePost = (post: ParsedFeedPost, baseUrl: string): HashnodePost => {
+  const url = toAbsoluteUrl(post.url, baseUrl);
+
+  return {
+    title: post.title.trim(),
+    brief: post.brief.trim(),
+    url,
+    slug: getSlugFromUrl(url),
+    publishedAt: post.publishedAt,
+    coverImage: post.coverImageUrl
+      ? {
+          url: toAbsoluteUrl(post.coverImageUrl, baseUrl)
+        }
+      : null
+  };
+};
+
+const parsePostsFromHtml = (html: string, baseUrl: string) => {
+  const parser = new DOMParser();
+  const documentNode = parser.parseFromString(html, "text/html");
+  const articleNodes = Array.from(documentNode.querySelectorAll("article.post-card"));
+
+  return articleNodes
+    .map((article) => {
+      const titleLink = article.querySelector<HTMLAnchorElement>("h2 a");
+      const description = article.querySelector<HTMLParagraphElement>(".post-card-description");
+      const image = article.querySelector<HTMLImageElement>("img.post-card-cover");
+      const dateText = article.querySelector(".post-card-meta span")?.textContent?.trim() ?? "";
+
+      if (!titleLink?.textContent?.trim() || !titleLink.getAttribute("href")) {
+        return null;
+      }
+
+      return normalizePost(
+        {
+          title: titleLink.textContent,
+          brief: description?.textContent ?? "",
+          url: titleLink.getAttribute("href") ?? "",
+          publishedAt: dateText,
+          coverImageUrl: image?.getAttribute("src") ?? undefined
+        },
+        baseUrl
+      );
+    })
+    .filter((post): post is HashnodePost => Boolean(post));
+};
+
+const parsePostsFromRss = (xml: string, baseUrl: string) => {
+  const parser = new DOMParser();
+  const documentNode = parser.parseFromString(xml, "application/xml");
+  const items = Array.from(documentNode.querySelectorAll("channel > item"));
+
+  return items
+    .map((item) => {
+      const title = item.querySelector("title")?.textContent?.trim() ?? "";
+      const description = decodeHtml(item.querySelector("description")?.textContent?.trim() ?? "");
+      const link = item.querySelector("link")?.textContent?.trim() ?? "";
+      const publishedAt = item.querySelector("pubDate")?.textContent?.trim() ?? "";
+
+      if (!title || !link) {
+        return null;
+      }
+
+      return normalizePost(
+        {
+          title,
+          brief: description,
+          url: link,
+          publishedAt
+        },
+        baseUrl
+      );
+    })
+    .filter((post): post is HashnodePost => Boolean(post));
+};
+
+const fetchBlogPosts = async (baseUrl: string, signal: AbortSignal) => {
+  try {
+    const homepageResponse = await fetch(baseUrl, { signal });
+
+    if (!homepageResponse.ok) {
+      throw new Error(`Falha ao buscar posts (${homepageResponse.status})`);
+    }
+
+    const homepageHtml = await homepageResponse.text();
+    const postsFromHtml = parsePostsFromHtml(homepageHtml, baseUrl);
+
+    if (postsFromHtml.length > 0) {
+      return postsFromHtml;
+    }
+  } catch (error) {
+    if (signal.aborted) {
+      throw error;
+    }
+  }
+
+  const rssResponse = await fetch(new URL("/rss.xml", baseUrl).toString(), { signal });
+
+  if (!rssResponse.ok) {
+    throw new Error(`Falha ao buscar feed (${rssResponse.status})`);
+  }
+
+  const rssXml = await rssResponse.text();
+  return parsePostsFromRss(rssXml, baseUrl);
 };
 
 export const HashnodePosts = ({ publicationHost = "blog.pedroxavier.com", limit = 5 }: HashnodePostsProps) => {
@@ -71,72 +189,15 @@ export const HashnodePosts = ({ publicationHost = "blog.pedroxavier.com", limit 
   useEffect(() => {
     const controller = new AbortController();
     const resolvedLimit = normalizeLimit(limit);
-    const fetchLimit = Math.max(resolvedLimit, 10);
+    const baseUrl = `https://${publicationHost}`;
 
     const fetchPosts = async () => {
       setLoading(true);
       setError(null);
 
       try {
-        const response = await fetch(HASHNODE_ENDPOINT, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            query: `
-              query HashnodePosts($host: String!, $first: Int!) {
-                publication(host: $host) {
-                  posts(first: $first) {
-                    edges {
-                      node {
-                        title
-                        brief
-                        slug
-                        url
-                        publishedAt
-                        coverImage { url }
-                      }
-                    }
-                  }
-                }
-              }
-            `,
-            variables: {
-              host: publicationHost,
-              first: fetchLimit
-            }
-          }),
-          signal: controller.signal
-        });
-
-        if (!response.ok) {
-          throw new Error(`Falha ao buscar posts (${response.status})`);
-        }
-
-        const json: HashnodeResponse = await response.json();
-        if (json.errors?.length) {
-          throw new Error(json.errors[0]?.message ?? "Erro ao carregar posts");
-        }
-
-        const edges = json.data?.publication?.posts?.edges ?? [];
-        const parsedPosts = edges
-          .map((edge, index) => ({ post: edge?.node, index }))
-          .filter((item): item is { post: HashnodePost; index: number } => Boolean(item.post));
-
-        const sortedPosts = parsedPosts
-          .slice()
-          .sort((a, b) => {
-            const diff = getPublishedTime(b.post.publishedAt) - getPublishedTime(a.post.publishedAt);
-            if (diff !== 0) {
-              return diff;
-            }
-            return a.index - b.index;
-          })
-          .slice(0, resolvedLimit)
-          .map((item) => item.post);
-
-        setPosts(sortedPosts);
+        const parsedPosts = await fetchBlogPosts(baseUrl, controller.signal);
+        setPosts(parsedPosts.slice(0, resolvedLimit));
       } catch (err) {
         if (!controller.signal.aborted) {
           setError(err instanceof Error ? err.message : "Erro inesperado ao carregar posts");
