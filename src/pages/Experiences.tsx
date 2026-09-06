@@ -12,7 +12,7 @@ const ExperiencesPage = () => {
       <div className="relative mt-2">
         <div className="absolute left-[18px] top-4 bottom-4 w-px bg-slate-800/70" aria-hidden />
         <div className="space-y-5">
-          {experiences.map((experience, index) => (
+          {experiences.map((experience) => (
             <div key={experience.id} className="relative flex gap-4">
               <div className="relative flex flex-col items-center pt-3">
                 <div className="flex h-9 w-9 items-center justify-center rounded-full border border-accent/50 bg-surface text-xs font-semibold text-accent">
