@@ -239,7 +239,7 @@ const fetchBlogPosts = async (baseUrl: string, signal: AbortSignal) => {
   return mergePosts(postsFromHtml, postsFromRss);
 };
 
-export const HashnodePosts = ({ publicationHost = "blog.pedroxavier.com", limit = 5 }: HashnodePostsProps) => {
+export const HashnodePosts = ({ publicationHost = "posts.pedroxavier.com", limit = 5 }: HashnodePostsProps) => {
   const [posts, setPosts] = useState<HashnodePost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

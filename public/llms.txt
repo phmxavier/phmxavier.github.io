@@ -20,4 +20,4 @@ Personal website and resume for Pedro Xavier.
 ## Profiles
 - LinkedIn: https://www.linkedin.com/in/phmxavier
 - GitHub: https://github.com/phmxavier
-- Blog: https://blog.pedroxavier.com
+- Blog: https://posts.pedroxavier.com

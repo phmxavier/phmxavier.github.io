@@ -38,7 +38,7 @@ export const socialLinks: SocialLink[] = [
   },
   {
     name: "Blog",
-    href: "https://blog.pedroxavier.com",
+    href: "https://posts.pedroxavier.com",
     icon: BlogIcon,
   },
 ];
