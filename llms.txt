@@ -1,0 +1,23 @@
+# Pedro Xavier
+
+Personal website and resume for Pedro Xavier.
+
+## Canonical website
+- https://pedroxavier.com/
+
+## LLM-friendly pages
+- Resume: https://pedroxavier.com/resume.html
+- Projects: https://pedroxavier.com/projects.html
+
+## Summary
+- Name: Pedro Xavier
+- Role: Especialista Master em Engenharia (Master Engineering Specialist) at Inter
+- Experience: 15+ years building products in regulated fintech environments
+- Focus: software architecture, technical leadership, fintech (acquiring, payments, KYC/AML, investments, collections), microservices
+- Languages: TypeScript, Python, C#, Java
+- Location: Belo Horizonte, Minas Gerais, Brazil
+
+## Profiles
+- LinkedIn: https://www.linkedin.com/in/phmxavier
+- GitHub: https://github.com/phmxavier
+- Blog: https://posts.pedroxavier.com
