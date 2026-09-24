@@ -18,13 +18,16 @@ const HomePage = () => {
             <h1 className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
               Pedro Xavier
               <span className="block text-lg font-medium text-accent">
-                Tech Manager & Especialista em Engenharia de Software
+                Especialista Master em Engenharia @ Inter · Arquitetura de Software & Liderança Técnica
               </span>
             </h1>
             <p className="text-lg text-slate-200">
-              Lidero times de produto em fintech, conectando engenharia, negócios e parceiros para lançar experiências
-              digitais de alto impacto. Atuo em arquitetura, estratégia técnica e cultura de engenharia, mantendo foco em
-              qualidade, observabilidade e entregas consistentes.
+              Lidero tecnicamente a modernização da frente de adquirência no Inter. Há mais de 15 anos construo e evoluo
+              produtos em ambientes regulados e de ritmo acelerado, principalmente fintechs, atuando na arquitetura e na
+              liderança de times.
+            </p>
+            <p className="text-sm text-slate-400">
+              Fintech: adquirência, pagamentos, KYC/PLD, investimentos e cobrança · TypeScript · Python · C# · Java
             </p>
             <div className="space-y-3">
               <div className="flex flex-wrap gap-3">

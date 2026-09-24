@@ -14,7 +14,7 @@ const ExperienceCard = ({ experience }: ExperienceCardProps) => {
         </div>
         <span className="text-xs text-slate-400">{experience.period}</span>
       </div>
-      <p className="mt-3 text-sm text-slate-200">{experience.description}</p>
+      <p className="mt-3 whitespace-pre-line text-sm text-slate-200">{experience.description}</p>
       <div className="mt-4 flex flex-wrap gap-2">
         {experience.techs.map((tech) => (
           <span

@@ -11,9 +11,11 @@ Personal website and resume for Pedro Xavier.
 
 ## Summary
 - Name: Pedro Xavier
-- Role: Tech Manager and software engineering specialist
-- Focus: fintech, architecture, technical strategy, product engineering, observability, engineering culture
-- Location: Brazil
+- Role: Especialista Master em Engenharia (Master Engineering Specialist) at Inter
+- Experience: 15+ years building products in regulated fintech environments
+- Focus: software architecture, technical leadership, fintech (acquiring, payments, KYC/AML, investments, collections), microservices
+- Languages: TypeScript, Python, C#, Java
+- Location: Belo Horizonte, Minas Gerais, Brazil
 
 ## Profiles
 - LinkedIn: https://www.linkedin.com/in/phmxavier
